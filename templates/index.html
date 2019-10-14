@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Qubit rotation</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+        <!--<link rel="stylesheet" href="https://unpkg.com/bulmaswatch/darkly/bulmaswatch.min.css">-->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        <section class="section">
+            <div class="container">
+                <h1 class="title">Qubit rotation with <code>pennylane</code></h1>
+
+                <form action="/" method="get">
+                    <div class="field">
+                        <label class="label">Enter your circuit here:</label>
+                        <div class="control">
+                            <input class="input" type="text" name="circuit" placeholder="RX, 0.54, RY, 0.12, PauliZ">
+                        </div>
+                        <p class="help">Example: <code>RX, 0.54, RY, 0.12, PauliZ</code></p>
+                    </div>
+                    <div class="control">
+                        <button class="button is-link" type="submit">Submit</button>
+                    </div>
+                </form>
+
+                <br>
+
+                <table class="table">
+                    <tr>
+                        <th>Available gates</th>
+                        <td>\(R_x\) (<code>RX</code>), \(R_y\) (<code>RY</code>), \(R_z\) (<code>RZ</code>)</td>
+                    </tr>
+                    <tr>
+                        <th>Available observables</th>
+                        <td>\(\sigma_x\) (<code>PauliX</code>), \(\sigma_y\) (<code>PauliY</code>), \(\sigma_z\) (<code>PauliZ</code>)</td>
+                    </tr>
+                </table>
+
+                <hr>
+
+                {% if gates %}
+                <!--<p class="is-size-4">Results for <code>{{ circuit }}</code></p>-->
+                <h2 class="title is-size-4">Results</h2>
+                <table class="table">
+                    <tr><th>Initial</th><td>\(\ket{0} = [1, 0]^T\)</td></tr>
+                    <tr><th>Gates</th><td>{{ gates }}</td></tr>
+                    <tr><th>Observable</th><td>{{ obs }}</td></tr>
+                    </tr>
+                </table>
+                {% else %}
+                <p>Make a circuit above!</p>
+                {% endif %}
+
+                <hr>
+
+                <p>Based on <a href="https://pennylane.readthedocs.io/en/latest/tutorials/pennylane_run_qubit_rotation.html">this tutorial</a>.</p>
+            </div>
+        </section>
+    </body>
+</html>
